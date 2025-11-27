@@ -2,13 +2,15 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "../style/Login.css"
 import { FcGoogle } from 'react-icons/fc';
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { useState } from 'react';
 import { useAuthStore } from '../stores/useAuth';
 import toast from 'react-hot-toast';
 
 export default function Login() {
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
     const [credentials, setcredentials] = useState({
         email: "",
         password: "",
@@ -48,9 +50,22 @@ export default function Login() {
                         <input id='email' type='text' placeholder='Enter your email' required value={credentials.email} onChange={e => setcredentials({ ...credentials, email: e.target.value })}></input>
                     </label>
                     <div className="password-row">
-                        <label htmlFor='password'>Password
+                        <label htmlFor='password' style={{ position: "relative"}}>Password
                             <input id='password' type="password" placeholder='Enter password' autoComplete='off' required value={credentials.password} onChange={e => setcredentials({ ...credentials, password: e.target.value })}>
                             </input>
+                            <span
+                                onClick={() => setShowPassword(prev => !prev)}
+                                style={{
+                                    position: "absolute",
+                                    right: "18px",
+                                    top: "74%",
+                                    transform: "translateY(-50%)",
+                                    cursor: "pointer",
+                                    userSelect: "none"
+                                }}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </span>
                         </label>
                         <Link to="/forgot-password" className='forgot-link'>Forgot password?</Link>
                     </div>

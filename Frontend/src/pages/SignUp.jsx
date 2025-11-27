@@ -1,11 +1,14 @@
 import "../style/SignUp.css";
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 import toast from "react-hot-toast";
 import { useAuthStore } from "../stores/useAuth"
 
 export default function SignUp() {
   const navigator = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -54,9 +57,36 @@ export default function SignUp() {
         <div className='sinup-div'>
           <label htmlFor='name'>Name <input onChange={e => setFormData({ ...formData, name: e.target.value })} value={formData.name} id='name' required placeholder='Name'></input></label>
           <label htmlFor='email'>Email <input onChange={e => setFormData({ ...formData, email: e.target.value })} value={formData.email} id='email' required placeholder='example@gmail.com'></input></label>
-          <label htmlFor='password'>Password <input onChange={e => setFormData({ ...formData, password: e.target.value })} value={formData.password} id='password' required placeholder="••••••••"></input></label>
+          <label htmlFor='password'>Password <input type={showPassword ? "text" : "password"} onChange={e => setFormData({ ...formData, password: e.target.value })} value={formData.password} id='password' required placeholder="••••••••"></input></label>
           <small className="password-help">Password must be at least 8 characters.</small>
-          <label htmlFor='confirmpassword'>Confirm Password <input id='confirmpassword' onChange={e => setFormData({ ...formData, confirmPassword: e.target.value })} value={formData.confirmPassword} required placeholder="••••••••"></input></label>
+          <label
+            htmlFor='confirmpassword'
+            style={{ position: "relative"}}>
+            Confirm Password
+            <input
+              id='confirmpassword'
+              type={showPassword ? "text" : "password"}
+              onChange={e => setFormData({ ...formData, confirmPassword: e.target.value })}
+              value={formData.confirmPassword}
+              required
+              placeholder="••••••••"
+            />
+
+            <span
+              onClick={() => setShowPassword(prev => !prev)}
+              style={{
+                position: "absolute",
+                right: "15px",
+                top: "70%", 
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+                userSelect: "none"
+              }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </label>
+
           <div className="checkbox-container">
             <input type="checkbox" id="terms" required onChange={e => setFormData({ ...formData, termAndcondition: e.target.checked })} />
             <Link to="/terms-and-conditions">I agree to the Terms & Conditions</Link>
