@@ -45,23 +45,11 @@ Please ensure that all sensitive values are correctly configured; otherwise, the
 Do not commit the .env file to GitHub — keep it private.
 
 ## Example variables (Backend):
-DATABASE_URL=
-JWT_SECRET=
-OTP_SERVICE_API_KEY=
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-STRIPE_SECRET_KEY=
-STRIPE_PUBLIC_KEY=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
-EMAIL_USER=
-EMAIL_PASSWORD=
+<pre> \`\`\`env DATABASE_URL= JWT_SECRET= OTP_SERVICE_API_KEY= GOOGLE_CLIENT_ID= GOOGLE_CLIENT_SECRET= GITHUB_CLIENT_ID= GITHUB_CLIENT_SECRET= STRIPE_SECRET_KEY= STRIPE_PUBLIC_KEY= CLOUDINARY_API_KEY= CLOUDINARY_API_SECRET= EMAIL_USER= EMAIL_PASSWORD= \`\`\` </pre>
 
-Example variables (Frontend):
-REACT_APP_BACKEND_URL=
-REACT_APP_STRIPE_PUBLIC_KEY=
+## Example variables (Frontend):
+<pre> \`\`\`env REACT_APP_BACKEND_URL=
+REACT_APP_STRIPE_PUBLIC_KEY= \`\`\` </pre>
 
 ```bash
 git clone https://github.com/TEJASS-PATELL/skeleton_application
